@@ -1,0 +1,16 @@
+beautifulsoup4==4.8.1
+bs4==0.0.1
+certifi==2019.9.11
+chardet==3.0.4
+idna==2.8
+lxml==4.4.1
+Pillow==6.2.1
+python-dateutil==2.8.0
+python-dotenv==0.10.3
+python-xlib==0.25
+requests==2.22.0
+six==1.12.0
+soupsieve==1.9.4
+urllib3==1.25.6
+plyer==1.4.2
+pytz==2019.3
