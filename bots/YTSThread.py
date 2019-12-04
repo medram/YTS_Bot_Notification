@@ -8,6 +8,7 @@ from requests.exceptions import HTTPError, ConnectTimeout, ConnectionError, Requ
 from bs4 import BeautifulSoup
 from PIL import Image
 
+from bots.utils import common
 from bots.utils.common import download
 from bots.botThread import BotThread
 
@@ -88,7 +89,7 @@ class YTSThread(BotThread):
 				# download new covers
 				for post in posts:
 					# download new movie cover
-					post['downloaded_cover'] = download(post['cover'], rename_to=f"{self.getName()}_{post['title']}")
+					post['downloaded_cover'] = download(post['cover'], rename_to=f"{self.getName()}_{common.cleanUp(post['title'])}")
 
 				# save the lastest post.
 				self._checkSaveNewMovie(posts[0], save=True)
@@ -102,6 +103,8 @@ class YTSThread(BotThread):
 		except HTTPError:
 			self.show('Connection timeout.')
 		except RequestException as e:
+			self.show(e)
+		except Exception as e:
 			self.show(e)
 
 		return False

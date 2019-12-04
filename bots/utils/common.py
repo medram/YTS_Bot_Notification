@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import requests
+import re
 
 from json.decoder import JSONDecodeError
 
@@ -67,3 +68,7 @@ def download(file_url, rename_to=None, chunk_size=10):
 				
 	return os.path.join('images', rename_to)
 
+
+def cleanUp(filename):
+	name, ext = os.path.splitext(filename)
+	return re.sub('[\W_]+', '_', name) + ext
