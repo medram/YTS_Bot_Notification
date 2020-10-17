@@ -20,7 +20,7 @@ class YTSThread(BotThread):
 		if url:
 			self._url = url
 		else:
-			self._url = 'https://yts.lt/browse-movies/0/all/animation/0/latest'
+			self._url = 'https://yts.mx/browse-movies/0/all/animation/0/latest/0/all'
 
 
 	def run(self):
@@ -39,7 +39,7 @@ class YTSThread(BotThread):
 		self.show('was stopped.', force=True)
 
 	def _getLastMovies(self):
-		
+
 		posts = []
 		try:
 			#jar = requests.cookies.RequestsCookieJar()
@@ -47,7 +47,7 @@ class YTSThread(BotThread):
 			soup = BeautifulSoup(res.text, 'lxml')
 
 			boxes = soup.findAll('div', class_='browse-movie-wrap')
-			
+
 			for box in boxes:
 				title = box.find('a', class_='browse-movie-title').text.strip()
 				released = box.find('div', class_='browse-movie-year').text.strip()
@@ -122,10 +122,10 @@ class YTSThread(BotThread):
 			return True
 		return False
 
-	def _notifyMe(self, posts:dict):		
+	def _notifyMe(self, posts:dict):
 		for post in posts:
 			cover = os.path.abspath(post['downloaded_cover'])
-			
+
 			if sys.platform == 'win32':
 				cover = self._convertToICO(cover)
 

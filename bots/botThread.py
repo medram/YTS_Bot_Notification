@@ -1,3 +1,4 @@
+import os
 import threading
 
 from bots.utils.common import FileConfig
@@ -15,6 +16,14 @@ class BotThread(threading.Thread):
 		self._config = FileConfig(f'data/{self.__class__.__qualname__}_data.json')
 		self._cookies = {} # for default values
 		self._cookies.update(cookies)
+		self._image_path = 'images'
+
+		# create 'images' folder if not found.
+		if not os.path.isdir(self._image_path):
+			try:
+				os.mkdir(self._image_path)
+			except IOError:
+				print('Oops, cannot create images folder, please try to create it manually.')
 
 	def run():
 		pass
