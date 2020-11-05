@@ -1,0 +1,11 @@
+python-dotenv
+beautifulsoup4==4.8.1
+certifi==2020.6.20
+chardet==3.0.4
+idna==2.8
+lxml==4.4.1
+Pillow==6.2.1
+pytz==2020.4
+requests==2.22.0
+soupsieve==2.0.1
+urllib3==1.25.11
