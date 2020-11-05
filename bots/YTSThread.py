@@ -2,7 +2,7 @@ import sys
 import os
 import glob
 import requests
-import plyer
+import subprocess
 
 from requests.exceptions import HTTPError, ConnectTimeout, ConnectionError, RequestException
 from bs4 import BeautifulSoup
@@ -11,6 +11,10 @@ from PIL import Image
 from bots.utils import common
 from bots.utils.common import download
 from bots.botThread import BotThread
+
+# Detecting OS android or Linux (GNU/Linux)
+cmd = subprocess.run('uname -a', shell=True, capture_output=True, text=True)
+PLATFORM = cmd.stdout.strip().split()[-1].lower()
 
 
 class YTSThread(BotThread):
@@ -129,17 +133,24 @@ class YTSThread(BotThread):
 			if sys.platform == 'win32':
 				cover = self._convertToICO(cover)
 
-			try:
-				plyer.notification.notify(
-						title=f"[YTS] {post.get('title')}.",
-						message=f"Released in: {post.get('released')}\nAvailable in: {', '.join(post.get('availableIn'))}",
-						timeout=self._notif_timeout,
-						app_name=self.getName(),
-						app_icon=cover
-						#ticker=True
-					)
-			except NotImplementedError as e:
-				self.show(e, force=True)
+			title = f"[YTS] {post.get('title')} ({post.get('released')})."
+			message = f"Available in: {', '.join(post.get('availableIn'))}"
+
+			if PLATFORM == 'android':
+				os.system(f'termux-notification -t "{title}" -c "{message}" --sound --image-path {cover} --vibrate 1000')
+			else: # may be it's Linux
+				try:
+					import plyer
+					plyer.notification.notify(
+							title=title,
+							message=message,
+							timeout=self._notif_timeout,
+							app_name=self.getName(),
+							app_icon=cover
+							#ticker=True
+						)
+				except NotImplementedError as e:
+					self.show(e, force=True)
 
 	def _convertToICO(self, path):
 		try:

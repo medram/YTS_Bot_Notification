@@ -1,4 +1,5 @@
 import os
+import time
 
 from dotenv import load_dotenv
 from bots import YTSThread
@@ -27,10 +28,15 @@ try:
 	# start the all threads
 	for t in threads_list:
 		t.start()
-	
-	# make the all threads finish.
+
+	# for cron job (no need for threads)
+	time.sleep(2)
 	for t in threads_list:
-		t.join()
+		t.stop()
+
+	# make the all threads finish.
+	# for t in threads_list:
+	# 	t.join()
 except KeyboardInterrupt:
 	for t in threads_list:
 		t.stop()

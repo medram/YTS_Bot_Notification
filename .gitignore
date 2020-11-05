@@ -1,5 +1,5 @@
 /venv
 /images
 **__pycache__**
-
+.git
 .env
