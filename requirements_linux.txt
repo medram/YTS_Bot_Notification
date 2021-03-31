@@ -5,7 +5,7 @@ certifi==2019.9.11
 chardet==3.0.4
 dbus-python==1.2.12
 idna==2.8
-lxml==4.4.1
+lxml==4.6.3
 Pillow==6.2.1
 plyer==1.4.2
 pyinotify==0.9.6
