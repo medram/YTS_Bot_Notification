@@ -11,6 +11,6 @@ python-xlib==0.25
 requests==2.22.0
 six==1.12.0
 soupsieve==1.9.4
-urllib3==1.25.6
+urllib3==1.26.5
 plyer==1.4.2
 pytz==2019.3
