@@ -1,13 +1,14 @@
 {
   "last_post": {
-    "title": "Midnight Delight",
-    "link": "https://yts.mx/movies/midnight-delight-2016",
-    "released": "2016",
-    "cover": "https://img.yts.mx/assets/images/movies/midnight_delight_2016/medium-cover.jpg",
+    "title": "Strange World",
+    "link": "https://yts.mx/movies/strange-world-2022",
+    "released": "2022",
+    "cover": "https://img.yts.mx/assets/images/movies/strange_world_2022/medium-cover.jpg",
     "availableIn": [
       "720p",
-      "1080p"
+      "1080p",
+      "2160p"
     ],
-    "downloaded_cover": "images/YTSThread_Midnight_Delight.jpg"
+    "downloaded_cover": "images/YTSThread_Strange_World.jpg"
   }
 }
